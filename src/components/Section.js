@@ -15,7 +15,10 @@ export default function Section() {
   async function getData() {
     const url = `http://api.weatherapi.com/v1/forecast.json?key=4a0965f212e0485d8a903740251702&q=${searchText}&days=7&aqi=no`;
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        method: "GET",
+        mode: "cors",
+      });
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
@@ -38,6 +41,10 @@ export default function Section() {
       <button type="submit" onClick={() => getData()}>
         Search
       </button>
+
+      <div className="flex justify-end">
+        <div>Weather App V.1 Mackdonk</div>
+      </div>
 
       {data && (
         <>
